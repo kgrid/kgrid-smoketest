@@ -37,7 +37,14 @@ jobs:
 
 workflows:
   version: 2
+
   main:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only: master
+  daily:
     triggers:
     - schedule:
         cron: "9 0 * * *"
@@ -46,7 +53,7 @@ workflows:
             only:
             - master
     jobs:
-    - build:
+     - build:
         filters:
           branches:
             only: master
