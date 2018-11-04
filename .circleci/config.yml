@@ -38,8 +38,16 @@ jobs:
 workflows:
   version: 2
   main:
+    triggers:
+    - schedule:
+        cron: "9 0 * * *"
+        filters:
+          branches:
+            only:
+            - master
     jobs:
     - build:
         filters:
           branches:
             only: master
+
