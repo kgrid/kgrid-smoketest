@@ -14,10 +14,9 @@
 						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
 						"exec": [
 							"",
-							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"pm.test(\"Response time is less than 30000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
 							"});",
-							"",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -27,7 +26,6 @@
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.details.shelf.status).to.eql(\"UP\");",
 							"    pm.expect(jsonData.details.activationService.status).to.eql(\"UP\");",
-							"    pm.expect(jsonData.details.activationService.details[\"Knowledge Objects found\"]).to.be.above(60);",
 							"});",
 							""
 						],
@@ -66,13 +64,8 @@
 					"script": {
 						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
 						"exec": [
-							"",
-							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
-							"});",
-							"",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Response time is less than 30000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
 							"});",
 							"",
 							"pm.test(\"Activator is Up and Running\", function () {",
@@ -119,9 +112,8 @@
 					"script": {
 						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
 						"exec": [
-							"",
-							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"pm.test(\"Response time is less than 30000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
 							"});",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
@@ -172,21 +164,17 @@
 					"script": {
 						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
 						"exec": [
-							"",
-							"pm.test(\"Response time is less than 1000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"pm.test(\"Response time is less than 30000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
 							"});",
-							"",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
-							"",
 							"pm.test(\"Activator is Up and Running\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.details.shelf.status).to.eql(\"UP\");",
 							"    pm.expect(jsonData.details.activationService.status).to.eql(\"UP\");",
-							"    pm.expect(jsonData.details.activationService.details[\"Knowledge Objects found\"]).to.be.above(60);",
 							"});",
 							""
 						],
