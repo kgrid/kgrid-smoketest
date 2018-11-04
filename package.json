@@ -1,0 +1,14 @@
+{
+  "name": "smoketest",
+  "version": "1.0.0",
+  "description": "Smoke Test the KGrid eniviroments",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run tests/Monitor.postman_collection.json --insecure"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^4.1.0"
+  }
+}
