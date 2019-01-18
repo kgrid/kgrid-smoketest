@@ -4,11 +4,13 @@
   "description": "Smoke Test the KGrid eniviroments",
   "main": "index.js",
   "scripts": {
-    "test": "newman run tests/Monitor.postman_collection.json --insecure"
+    "test": "node scripts/smoketest.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "newman": "^4.1.0"
+    "fs-extra": "^7.0.1",
+    "newman": "^4.1.0",
+    "simple-get": "^3.0.3"
   }
 }

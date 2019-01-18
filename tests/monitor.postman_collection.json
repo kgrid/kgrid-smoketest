@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "156fcfd7-b324-4efb-8363-0fc7a92b03c1",
+		"name": "Monitor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "heroku-activator",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
+						"exec": [
+							"",
+							"pm.test(\"Response time is less than 30000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Activator is Up and Running\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.details.shelf.status).to.eql(\"UP\");",
+							"    pm.expect(jsonData.details.activationService.status).to.eql(\"UP\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{activator_url}}/health",
+					"host": [
+						"{{activator_url}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Test the Activator deployment"
+			},
+			"response": []
+		},
+		{
+			"name": "heroku-library",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
+						"exec": [
+							"pm.test(\"Response time is less than 30000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Activator is Up and Running\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.details.shelf.status).to.eql(\"UP\");",
+							"    pm.expect(jsonData.details.userDetailService.status).to.eql(\"UP\");",
+							"    pm.expect(jsonData.details.ezidService.status).to.eql(\"UP\");",
+							"    pm.expect(jsonData.details.db.status).to.eql(\"UP\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{library_url}}/health",
+					"host": [
+						"{{library_url}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Test the Library deployment"
+			},
+			"response": []
+		}
+	]
+}
