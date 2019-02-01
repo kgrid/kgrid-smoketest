@@ -4,6 +4,7 @@ const fs = require('fs-extra')
 
 runSmokeTest("chipmunk");
 runSmokeTest("hippo");
+runSmokeTest("monkey");
 runSmokeTest("lion");
 
 function runSmokeTest(instance){
