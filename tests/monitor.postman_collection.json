@@ -61,8 +61,8 @@
 					"script": {
 						"id": "30e911c7-8b49-470a-b6eb-e507adaf8a03",
 						"exec": [
-							"pm.test(\"Response time is less than 30000ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(300000);",
+							"pm.test(\"Response time is less than 60000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600000);",
 							"});",
 							"",
 							"pm.test(\"Status code is 200\", function () {",
