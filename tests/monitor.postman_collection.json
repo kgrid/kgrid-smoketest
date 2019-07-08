@@ -73,7 +73,6 @@
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.details.shelf.status).to.eql(\"UP\");",
 							"    pm.expect(jsonData.details.userDetailService.status).to.eql(\"UP\");",
-							"    pm.expect(jsonData.details.ezidService.status).to.eql(\"UP\");",
 							"    pm.expect(jsonData.details.db.status).to.eql(\"UP\");",
 							"});",
 							"",
