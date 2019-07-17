@@ -1,11 +1,13 @@
 const newman = require('newman');
-const get = require('simple-get')
-const fs = require('fs-extra')
+const get = require('simple-get');
+const fs = require('fs-extra');
 
 runSmokeTest("chipmunk");
 runSmokeTest("hippo");
 runSmokeTest("monkey");
 runSmokeTest("lion");
+
+console.log('Slack WebHook URL:', process.env.SLACK_WEBHOOK);
 
 function runSmokeTest(instance){
 
@@ -34,8 +36,7 @@ function runSmokeTest(instance){
       get.post(opts, function (err, res) {
         if (err) throw err
         res.pipe(process.stdout) // `res` is a stream
-      })
-
+      });
 
       summary.run.failures.forEach(function(element) {
 
@@ -50,10 +51,29 @@ function runSmokeTest(instance){
 
       });
 
-
-
       console.log('collection run completed.');
     }
 
+    const message = {
+      attachments: [
+        {
+          title: "Smoke Test " + instance.toUpperCase(),
+          color: summary.run.failures.length>0?"danger":"good",
+          text: summary.run.failures.length>0?"HOUSTON WE HAVE A PROBLEM":"Happy Happy Joy Joy all is good"
+        }
+      ]
+    };
+
+    const opts = {
+      url: process.env.SLACK_WEBHOOK,
+      body: JSON.stringify(message),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    }
+    get.post(opts, function (err, res) {
+      if (err) throw err
+      res.pipe(process.stdout) // `res` is a stream
+    });
   });
 }

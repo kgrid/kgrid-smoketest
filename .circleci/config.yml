@@ -23,7 +23,9 @@ jobs:
 
     - run:
         name: Install KGrid Smoke Test
-        command: npm install
+        command: |
+           export SLACK_WEBHOOK=$SLACK_WEBHOOK
+           npm install
 
     - save_cache:
         paths:
