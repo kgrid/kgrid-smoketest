@@ -49,7 +49,7 @@ workflows:
   daily:
     triggers:
     - schedule:
-        cron: "0 */4 * * *"
+        cron: "0 * * * *"
         filters:
           branches:
             only:
@@ -59,4 +59,3 @@ workflows:
         filters:
           branches:
             only: master
-
