@@ -7,7 +7,6 @@ runSmokeTest("hippo");
 runSmokeTest("monkey");
 runSmokeTest("lion");
 
-console.log('Slack WebHook URL:', process.env.SLACK_WEBHOOK);
 
 function runSmokeTest(instance){
 
@@ -27,10 +26,9 @@ function runSmokeTest(instance){
   }).on('done', function (err, summary) {
     if (err || summary.error) {
       console.error('collection run encountered an error.');
-    }
-    else {
+    } else {
       const opts = {
-        url: 'https://kgrid-dashboard.herokuapp.com/widgets/'+instance,
+        url: 'https://kgrid-dashboard.herokuapp.com/widgets/' + instance,
         body: '{ "auth_token": "kgridiscool", "message": "Happy Happy", "type": "happy"}'
       }
       get.post(opts, function (err, res) {
@@ -38,10 +36,10 @@ function runSmokeTest(instance){
         res.pipe(process.stdout) // `res` is a stream
       });
 
-      summary.run.failures.forEach(function(element) {
+      summary.run.failures.forEach(function (element) {
 
         const opts = {
-          url: 'https://kgrid-dashboard.herokuapp.com/widgets/'+instance,
+          url: 'https://kgrid-dashboard.herokuapp.com/widgets/' + instance,
           body: '{ "auth_token": "kgridiscool", "message": "Houston we have a problem", "type": "alert"}'
         }
         get.post(opts, function (err, res) {
@@ -58,8 +56,9 @@ function runSmokeTest(instance){
       attachments: [
         {
           title: "Smoke Test " + instance.toUpperCase(),
-          color: summary.run.failures.length>0?"danger":"good",
-          text: summary.run.failures.length>0?"HOUSTON WE HAVE A PROBLEM":"Happy Happy Joy Joy all is good"
+          color: summary.run.failures.length > 0 ? "danger" : "good",
+          text: summary.run.failures.length > 0 ? "HOUSTON WE HAVE A PROBLEM"
+              : "Happy Happy Joy Joy all is good"
         }
       ]
     };
@@ -71,9 +70,17 @@ function runSmokeTest(instance){
         'Content-type': 'application/json'
       }
     }
-    get.post(opts, function (err, res) {
-      if (err) throw err
-      res.pipe(process.stdout) // `res` is a stream
-    });
+
+    if (summary.run.failures.length > 0) {
+
+      get.post(opts, function (err, res) {
+        if (err) throw err
+        res.pipe(process.stdout) // `res` is a stream
+      });
+
+    } else {
+      console.log(message.attachments.title + ":"+ message.attachments.text);
+    }
+
   });
 }
