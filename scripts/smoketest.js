@@ -3,8 +3,6 @@ const get = require('simple-get');
 const fs = require('fs-extra');
 
 runSmokeTest("chipmunk");
-runSmokeTest("hippo");
-runSmokeTest("monkey");
 runSmokeTest("lion");
 
 
@@ -34,19 +32,6 @@ function runSmokeTest(instance){
       get.post(opts, function (err, res) {
         if (err) throw err
         res.pipe(process.stdout) // `res` is a stream
-      });
-
-      summary.run.failures.forEach(function (element) {
-
-        const opts = {
-          url: 'https://kgrid-dashboard.herokuapp.com/widgets/' + instance,
-          body: '{ "auth_token": "kgridiscool", "message": "Houston we have a problem", "type": "alert"}'
-        }
-        get.post(opts, function (err, res) {
-          if (err) throw err
-          res.pipe(process.stdout) // `res` is a stream
-        })
-
       });
 
       console.log('collection run completed.');
