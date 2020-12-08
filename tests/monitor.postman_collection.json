@@ -40,7 +40,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{activator_url}}/health",
+					"raw": "{{activator_url}}/actuator/health",
 					"host": [
 						"{{activator_url}}"
 					],
