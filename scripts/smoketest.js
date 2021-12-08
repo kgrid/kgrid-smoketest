@@ -2,7 +2,7 @@ const newman = require('newman');
 const get = require('simple-get');
 const fs = require('fs-extra');
 
-runSmokeTest("chipmunk");
+// runSmokeTest("chipmunk");
 runSmokeTest("lion");
 
 
