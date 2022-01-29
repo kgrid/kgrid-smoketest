@@ -11,6 +11,6 @@
   "dependencies": {
     "fs-extra": "^7.0.1",
     "newman": "^4.1.0",
-    "simple-get": "^3.0.3"
+    "simple-get": "^4.0.1"
   }
 }
